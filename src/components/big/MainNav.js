@@ -1,4 +1,5 @@
 import { Routes, Route, Outlet } from "react-router-dom";
+import { MainContextProvider } from "../../config/contexts/MainContext";
 import About from "../../views/About";
 import Create from "../../views/Blog/Create";
 import DetailBlog from "../../views/Blog/DetailBlog";
@@ -8,6 +9,7 @@ import MainNavComponent from "./MainNavComponent";
 const MainNav = () => {
     return (
         <nav>
+            <MainContextProvider>
             <MainNavComponent />
             <Outlet />
 
@@ -17,6 +19,7 @@ const MainNav = () => {
                 <Route path="/blogs/:slug" element={<DetailBlog />} />
                 <Route path="/blogs/create" element={<Create />} />
             </Routes>
+            </MainContextProvider>
         </nav>
     )
 }
