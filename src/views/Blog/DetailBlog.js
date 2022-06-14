@@ -1,12 +1,34 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from 'axios'
+
 const DetailBlog = () => {
+    let params = useParams()
+    const [loading,setLoading] = useState(false)
+    const [data,setData] = useState([])
+    const [author,setAuthor] = useState('')
+
+    useEffect(() => {
+        setLoading(true)
+      axios.get(`http://localhost:3000/v1/blogs/posts/${params.slug}`)
+        .then(response => {
+            setData(response.data.data)
+            setAuthor(response.data.data.author.name)
+            setLoading(false)
+        })
+    }, [data, params, loading])
+    
+
     return (
+        <div>
         <div className="container mx-auto py-6">
-            <img src="/asset/images/img-login.jpg" className="w-full h-[300px] object-cover object-center rounded-xl mb-3" alt="" />
-            <p className="font-medium text-2xl">Title blog</p>
-            <p className="text-gray-400 mb-4">Author - Arie</p>
+            <img src={'http://localhost:3000/' + data.image} className="w-full h-[300px] object-cover object-center rounded-xl mb-3" alt="" />
+            <p className="font-medium text-2xl">{data.title || 'title not found 404'}</p>
+            <p className="text-gray-400 mb-4">Author - {author || ''}</p>
             <p className="font-medium">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus necessitatibus est iste. Voluptatem blanditiis ipsum nobis eaque sint ducimus voluptatum doloribus inventore ullam! Modi officia sed impedit, ullam blanditiis assumenda dolorum culpa, tempora, quisquam fugit itaque ex eaque unde corrupti aliquid totam? Porro sapiente dolorum debitis qui provident repellendus ipsum, iste repellat enim totam! Et suscipit quos accusamus libero maiores optio reiciendis officiis enim, hic aspernatur assumenda molestiae excepturi cupiditate doloremque incidunt minus dicta quae dignissimos consequatur, ullam nobis harum. Dolores earum autem architecto qui mollitia unde cum magnam ab officia, asperiores rerum accusantium, porro delectus, aperiam enim voluptate? Tempore.
+            {data.body}
             </p>
+        </div>
         </div>
     )
 }

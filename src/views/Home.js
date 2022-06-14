@@ -21,7 +21,7 @@ const Home = () => {
             {
                 getDataBlog != null ?
                 getDataBlog.map(e => 
-                    <CardBlog key={e._id} data={e} />
+                    <CardBlog key={e._id} id={e._id} data={e} getAllData={context.getAllDataBlog} />
                 )
                     :
                 <p>Loading</p>

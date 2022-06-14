@@ -36,7 +36,8 @@ export const MainContextProvider = ({children}) => {
         prevPaging,
         dataPage,
         page,
-        totalPage
+        totalPage,
+        getAllDataBlog
     }
 
     return <MainContext.Provider value={MainContextValue}>{children}</MainContext.Provider>
