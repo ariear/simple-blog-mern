@@ -19,7 +19,7 @@ const CardBlog = (props) => {
             {props.data.body}
             </p>
             <div className="flex items-center">
-                <p className="py-2 px-5 rounded-lg bg-yellow-400 mr-3">Edit</p>
+                <Link to={`/blogs/${props.id}/edit`}><p className="py-2 px-5 rounded-lg bg-yellow-400 mr-3">Edit</p></Link>
                 <p className="py-2 px-5 rounded-lg bg-red-400 text-white cursor-pointer" onClick={() => hapus()}>Hapus</p>
             </div>
         </div>
