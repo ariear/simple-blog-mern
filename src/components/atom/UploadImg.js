@@ -1,7 +1,9 @@
 
 export const UploadImg = (props) => {
     const trigerUpload = (e) => {
-        props.setEdit(false)
+        if (props.edit) {
+            props.setEdit(false)
+        }
         props.setimgPreview(e.target.files[0])
     }
 
